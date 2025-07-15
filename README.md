@@ -1,18 +1,16 @@
-# Проект Stellar Burgers
+# Проект
 
 ## Космическая бургерная
 
 Сервис с возможностью сборки и заказа индивидуального бургера. Реализован функционал Drag and Drop для сборки заказа, а также сортировки в конструкторе. Возможность отслеживать статус в общей ленте заказов, личный кабинет. В дальнейшем планируется добавить функционал оцени и отзывов.
 
-[Ссылка на проект](https://tavakai.github.io/stellar-burger/)
-
 ## Стек
 
-* React, TypeScript, Redux, Redux-thunk, Websockets
-* Jest, Cypress
+- React, TypeScript, Redux, Redux-thunk, Websockets
+- Jest, Cypress
 
 ### Download
 
-После загрузки установите все необходимые зависимости ```npm install```
-Для запуска ```npm start```
-Деплой ```npm deploy```
+После загрузки установите все необходимые зависимости `npm install`
+Для запуска `npm start`
+Деплой `npm deploy`
