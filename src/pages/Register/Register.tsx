@@ -1,19 +1,25 @@
-import { Input, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from '../form.module.css';
-import { Link } from 'react-router-dom';
-import { useForm } from '../../hooks/useForm';
-import { signUp } from '../../services/actions/register'; 
-import Preloader from '../../components/Preloader/Preloader';
-import { ChangeEvent, FC, FormEvent } from 'react';
-import { useAppDispatch, useAppSelector } from '../../services/types/reduxHooks';
+import {
+  Input,
+  Button,
+} from "@ya.praktikum/react-developer-burger-ui-components";
+import styles from "../form.module.css";
+import { Link } from "react-router-dom";
+import { useForm } from "../../hooks/useForm";
+import { signUp } from "../../services/actions/register";
+import Preloader from "../../components/Preloader/Preloader";
+import { ChangeEvent, FC, FormEvent } from "react";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../services/types/reduxHooks";
 
 const Register: FC = () => {
   const dispatch = useAppDispatch();
-  const { authRequest } = useAppSelector(store => store.auth);
+  const { authRequest } = useAppSelector((store) => store.auth);
   const { values, handleChange } = useForm({
-    name: '',
-    email: '',
-    password: ''
+    name: "",
+    email: "",
+    password: "",
   });
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     handleChange(e);
@@ -21,45 +27,56 @@ const Register: FC = () => {
   const formSubmit = (e: FormEvent) => {
     e.preventDefault();
     dispatch(signUp(values));
-  }
+  };
   return (
     <section className={styles.section}>
       <div className={styles.form_wrapper}>
-        <form action="#" className={styles.form} onSubmit={formSubmit} >
+        <form action="#" className={styles.form} onSubmit={formSubmit}>
           <fieldset className={styles.fieldset}>
             <legend className={styles.form_title}>Регистрация</legend>
             <Input
-              type={'text'}
-              placeholder={'Имя'}
+              type={"text"}
+              placeholder={"Имя"}
               value={values.name}
               onChange={handleChangeInput}
-              name={'name'}
+              name={"name"}
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
             />
             <Input
-              type={'email'}
-              placeholder={'E-mail'}
+              type={"email"}
+              placeholder={"E-mail"}
               value={values.email}
               onChange={handleChangeInput}
-              name={'email'}
+              name={"email"}
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
             />
             <Input
-              type={'password'}
-              placeholder={'Пароль'}
+              type={"password"}
+              placeholder={"Пароль"}
               value={values.password}
               onChange={handleChangeInput}
               icon={"ShowIcon"}
-              name={'password'}
+              name={"password"}
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
             />
           </fieldset>
-          <Button type="primary" size="medium">
+          <Button htmlType="button" type="primary" size="medium">
             Зарегистрироваться
           </Button>
         </form>
-        <span className={styles.form_text}>Уже зарегистрированы? <Link to="/login" className={styles.form_link}>Войти</Link></span>
+        <span className={styles.form_text}>
+          Уже зарегистрированы?{" "}
+          <Link to="/login" className={styles.form_link}>
+            Войти
+          </Link>
+        </span>
       </div>
-      { authRequest && <Preloader /> }
+      {authRequest && <Preloader />}
     </section>
-  )
-}
+  );
+};
 
 export default Register;

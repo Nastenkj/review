@@ -1,37 +1,48 @@
 import {
-  Button, CurrencyIcon
+  Button,
+  CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import style from '../BurgerConstructor.module.css';
+import style from "../BurgerConstructor.module.css";
 import { useEffect, useState, FC } from "react";
 import { showModal } from "../../../services/actions/actionCreators/modals";
 import { createOrder } from "../../../services/actions/ingredients";
 import { useNavigate } from "react-router-dom";
 import { IIngredient } from "../../../utils/types";
-import { useAppDispatch, useAppSelector } from "../../../services/types/reduxHooks";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../services/types/reduxHooks";
 
 const Order: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [bunPrice, setBunPrice] = useState(0);
-  const { ingredientsInConstructor, buns, bunsCount } = useAppSelector(store => store.burgerConstructor);
-  const { loggedIn } = useAppSelector(store => store.auth);
+  const { ingredientsInConstructor, buns, bunsCount } = useAppSelector(
+    (store) => store.burgerConstructor
+  );
+  const { loggedIn } = useAppSelector((store) => store.auth);
 
   const handleClickOnOrderButton = () => {
     if (!loggedIn) {
-      navigate("/login")
+      navigate("/login");
     } else {
-      const mainIngredientsArray = ingredientsInConstructor.map((item: IIngredient) => {
-        return item._id
-      })
+      const mainIngredientsArray = ingredientsInConstructor.map(
+        (item: IIngredient) => {
+          return item._id;
+        }
+      );
       const orderArray: any = [...mainIngredientsArray, buns?._id, buns?._id];
-      dispatch(createOrder(orderArray))
-      dispatch(showModal())
+      dispatch(createOrder(orderArray));
+      dispatch(showModal());
     }
-  }
+  };
 
-  const ingredientsPrice = ingredientsInConstructor.reduce((sum: number, elem: IIngredient) => {
-    return elem.price + sum;
-  }, 0);
+  const ingredientsPrice = ingredientsInConstructor.reduce(
+    (sum: number, elem: IIngredient) => {
+      return elem.price + sum;
+    },
+    0
+  );
 
   useEffect(() => {
     if (buns !== null) {
@@ -39,7 +50,7 @@ const Order: FC = () => {
     } else {
       setBunPrice(0);
     }
-  }, [buns])
+  }, [buns]);
 
   return (
     <div className={style.totalPrice_wrapper}>
@@ -47,11 +58,16 @@ const Order: FC = () => {
       <div className={style.totalPrice_icon}>
         <CurrencyIcon type="primary" />
       </div>
-      <Button type="primary" size="large" onClick={handleClickOnOrderButton}>
+      <Button
+        htmlType="button"
+        type="primary"
+        size="large"
+        onClick={handleClickOnOrderButton}
+      >
         Оформить заказ
       </Button>
     </div>
-  )
-}
+  );
+};
 
 export default Order;
