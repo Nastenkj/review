@@ -43,17 +43,6 @@ describe('ingredient reducer', () => {
       ingredients: [ingredient]
     })
   })
-  it('should GET_INGREDIENTS_SUCCESS', () => {
-    expect(ingredientReducer(initialState, {
-      type: action.GET_INGREDIENTS_SUCCESS,
-      ingredients: [ingredient]
-    }))
-    .toEqual({
-      ...initialState,
-      ingredientsRequest: false,
-      ingredients: [ingredient]
-    })
-  })
   it('should GET_INGREDIENTS_FAILED', () => {
     expect(ingredientReducer(initialState, {
       type: action.GET_INGREDIENTS_FAILED
