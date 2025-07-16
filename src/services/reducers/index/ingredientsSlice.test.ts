@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { ingredientReducer, initialState } from ".";
-import * as action from '../../actions/constants';
+import * as action from '../../actions/constants'; 
 
 describe('ingredient reducer', () => {
   const ingredient = {
